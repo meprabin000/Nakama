@@ -1,0 +1,24 @@
+{
+  "name": "nakama",
+  "version": "1.0.0",
+  "description": "A progressive web application that has language translation, currency converter, and location tracking functionality",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meprabin000/Nakama.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meprabin000/Nakama/issues"
+  },
+  "homepage": "https://github.com/meprabin000/Nakama#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
