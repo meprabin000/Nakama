@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 //custom imports
 import HomepageButtons from "../Components/HomepageButtons";
+import TopBar from "../Components/TopBar";
 
 
 const Home = (props) => {
@@ -18,9 +19,7 @@ const Home = (props) => {
     <Grid container spacing = {2}>
         {/* Creating the Top Bar  */}
         <Grid item xs={12}>
-            <Container maxWidth="sm">
-                <Box sx={{ bgcolor: '#cfe8fc', height: '10vh' }} />
-            </Container>
+        <TopBar></TopBar>
         </Grid>
 
         {/* Creating the Main Body  */}
