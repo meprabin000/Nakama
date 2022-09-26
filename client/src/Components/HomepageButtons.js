@@ -7,27 +7,17 @@ import Stack from '@mui/material/Stack';
 import { useNavigate } from "react-router-dom";
 
 
-const Home = (props) => {
+export default function HomepageButtons() {
     let navigate = useNavigate(); 
     const routeChange = () =>{ 
     let path = `/currencyConverter`; 
     navigate(path);
     }
-    return ( 
-    <div>
-    {/* Main Page Top Grid */}
-    <Grid container spacing = {2}>
-        {/* Creating the Top Bar  */}
-        <Grid item xs={12}>
-            <Container maxWidth="sm">
-                <Box sx={{ bgcolor: '#cfe8fc', height: '10vh' }} />
-            </Container>
-        </Grid>
+    return (
+        <div style={{marginLeft:30}}>
+        
+        <Grid container spacing = {2}>
 
-        {/* Creating the Main Body  */}
-        <Grid item xs = {12}>
-        <img src="/images/10966.jpg" alt="10966" width="100%" height="100%"/>
-        </Grid>
         {/* Creating the currency converter button  */}
         <Grid item xs = {6} alignItems="center">
         <Stack direction="row" spacing={2}>
@@ -55,9 +45,7 @@ const Home = (props) => {
         </Button>
         </Stack>
         </Grid>
-    </Grid>
-    {/* Closing Main Page Top Grid */}
-    </div> );
+        </Grid>
+        </div>
+    )
 }
- 
-export default Home;

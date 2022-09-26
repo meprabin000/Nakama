@@ -1,6 +1,6 @@
 import React from "react";
-import Home from "./features/Home";
-import CurrencyConverter from "./features/CurrencyConverter";
+import Home from "./pages/Home";
+import CurrencyConverter from "./pages/CurrencyConverter";
 
 const routesMap = () => {
     return ([ 
