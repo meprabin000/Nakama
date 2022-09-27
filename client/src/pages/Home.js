@@ -1,9 +1,23 @@
 import React from "react";
+import { Container } from "react-bootstrap";
+import HomepageButton from "../Components/HomepageButton";
+import TopBar from "../Components/TopBar";
+
 
 const Home = (props) => {
-    return ( <div>
-        Home Page
-    </div> );
+    return ( 
+    <Container className="homepage">
+        <div className="homeImage">
+            <img src="../../images/homepage.jpg" />
+        </div>
+
+        <div className="featureTabs">
+            <HomepageButton link="http://localhost:3000/currencyConverter">Converter</HomepageButton>
+            <HomepageButton>Translator</HomepageButton>
+            <HomepageButton>Itinerary</HomepageButton>
+            <HomepageButton>Emergency</HomepageButton>
+        </div>
+    </Container> );
 }
  
 export default Home;
