@@ -2,13 +2,8 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import { Button, Form } from "react-bootstrap";
 
-//custom imports
-import TopBar from "../Components/TopBar";
-
 const CurrencyConverter = (props) => {
     return ( <Container>
-        <TopBar/>
-
         <h3 style={{textAlign: 'left', marginTop: '20px', marginBottom: '20px'}}>Currency Converter</h3>
         <Form>
             <Form.Control
