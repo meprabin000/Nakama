@@ -13,7 +13,7 @@ function Itinerary(props) {
             {/* The accordion here is to create a list of days for the itinerary in the form of collapsible tabls for each day. */}
             <Accordion>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                    July 14th, 2023
+                July 14th, 2023
                 </AccordionSummary>
                 <AccordionDetails>
                 Flight to Tokyo, go to K’s House for accommodation (add one day)
