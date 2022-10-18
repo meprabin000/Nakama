@@ -13,7 +13,10 @@ async function getDayPlans(req, res, next){
         const database = client.db(dbName);
         let cursor = database.collection('itinerary');
         const found = await cursor.find({'_id': new mongo.ObjectId(queryParam.Itinerary_identifier)}).toArray();
-        res.send(found[0].DayPlans);
+        if (found[0])
+            res.send(found[0].DayPlans);
+        else
+            res.send({"error":"400"});
     }
     else {  //errors when there's too many query params
         res.send({"error" : "400"})
