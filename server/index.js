@@ -1,5 +1,6 @@
 const express = require("express");
 const currency = require('./currency');
+const itinerary = require('./itinerary')
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -19,5 +20,6 @@ app.listen(PORT, () => {
 });
 
 app.use('/currency', currency.convert);
+app.use('/itinerary/getDayPlans', itinerary.getDayPlans);
 
 module.exports = app;
