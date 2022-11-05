@@ -21,5 +21,10 @@ app.listen(PORT, () => {
 
 app.use('/currency', currency.convert);
 app.use('/itinerary/getDayPlans', itinerary.getDayPlans);
+app.use('/itinerary/insertItinerary', itinerary.insertItinerary);
+app.use('/itinerary/updateItinerary', itinerary.updateItinerary);
+app.use('/itinerary/deleteItinerary', itinerary.deleteItinerary);
+app.use('/itinerary/insertDayPlan', itinerary.insertDayPlan);
+app.use('/itinerary/updateDayPlan', itinerary.updateDayPlan);
 
 module.exports = app;
