@@ -219,7 +219,7 @@ async function updateDayPlan(req, res, next){
             if (queryParam.DayDate) {
                 try {
                     found = await cursor.updateOne({'_id':new mongo.ObjectId(queryParam.Itinerary_identifier), 'DayPlans._id': new mongo.ObjectId(queryParam.DayPlan_identifier)},
-                        {$set: {'DayPlans.$[]': queryParam.DayDate}}
+                        {$set: {'DayPlans.$.DayDate': queryParam.DayDate}}
                     );
                     if (found)
                         res.send({"status code":"200"});
@@ -229,8 +229,43 @@ async function updateDayPlan(req, res, next){
                     res.send({"error" : "400"})
                 }
             }
+            else {
+                res.send({"error" : "400"})
+            }
             if (queryParam.Description){
-
+                try {
+                    found = await cursor.updateOne({'_id':new mongo.ObjectId(queryParam.Itinerary_identifier), 'DayPlans._id': new mongo.ObjectId(queryParam.DayPlan_identifier)},
+                        {$set: {'DayPlans.$.Description': queryParam.Description}}
+                    );
+                    if (found)
+                        res.send({"status code":"200"});
+                }
+                catch (err) {
+                    console.log(err)
+                    res.send({"error" : "400"})
+                }
+            }
+            else {
+                res.send({"error" : "400"})
+            }
+        }
+        else if (queryLength == 4){
+            if (queryParam.Description && queryParam.DayDate){
+                try {
+                    found = await cursor.updateOne({'_id':new mongo.ObjectId(queryParam.Itinerary_identifier), 'DayPlans._id': new mongo.ObjectId(queryParam.DayPlan_identifier)},
+                        {$set: {'DayPlans.$.Description': queryParam.Description,
+                                'DayPlans.$.DayDate':queryParam.DayDate}}
+                    );
+                    if (found)
+                        res.send({"status code":"200"});
+                }
+                catch (err) {
+                    console.log(err)
+                    res.send({"error" : "400"})
+                }
+            }
+            else {
+                res.send({"error" : "400"})
             }
         }
     }
@@ -239,8 +274,26 @@ async function updateDayPlan(req, res, next){
     }
 }
 
-async function deleteDayPlay(req, res, next){
-
+async function deleteDayPlan(req, res, next){
+    let queryParam = url.parse(req.url,true).query; //creates json object for query parameters
+    if (Object.keys(queryParam).length == 2 && (queryParam.DayPlan_identifier && queryParam.Itinerary_identifier)) { //only allows for one query param
+        const database = client.db(dbName);
+        let cursor = database.collection('itinerary');
+        try {
+            found = await cursor.updateOne({'_id':new mongo.ObjectId(queryParam.Itinerary_identifier)},
+                {$pull: {'DayPlans': {'_id': new mongo.ObjectId(queryParam.DayPlan_identifier)}}}                                
+            );
+            if (found)
+                res.send({"status code":"200"});
+        }
+        catch (err) {
+            console.log(err)
+            res.send({"error" : "400"})
+        }
+    }
+    else {  //errors when there's too many or not enough query params
+        res.send({"error" : "400"})
+    }
 }
 
 module.exports.getDayPlans = getDayPlans;
@@ -249,3 +302,4 @@ module.exports.updateItinerary = updateItinerary;
 module.exports.deleteItinerary = deleteItinerary;
 module.exports.insertDayPlan = insertDayPlan;
 module.exports.updateDayPlan = updateDayPlan;
+module.exports.deleteDayPlan = deleteDayPlan;

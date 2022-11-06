@@ -26,5 +26,6 @@ app.use('/itinerary/updateItinerary', itinerary.updateItinerary);
 app.use('/itinerary/deleteItinerary', itinerary.deleteItinerary);
 app.use('/itinerary/insertDayPlan', itinerary.insertDayPlan);
 app.use('/itinerary/updateDayPlan', itinerary.updateDayPlan);
+app.use('/itinerary/deleteDayPlan', itinerary.deleteDayPlan);
 
 module.exports = app;
