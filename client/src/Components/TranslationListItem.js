@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 
 const TranslationListItem = (props) => {
 
+    // renders each table item in a proper format
     return (
         <tr>
             <th>{props.id}</th>

@@ -9,6 +9,7 @@ import translationList from "../Data/translationList";
 const Translator = (props) => {
     const [filteredList, setFilteredList] = useState(translationList);
 
+    // filters out the translations whose english phrase doesn't contain the 'phrase' in the parameter
     const filterByPhrase =(phrase) => {
         const newList = translationList.filter((item) => item.englishPhrase.toLowerCase().includes(phrase));
         setFilteredList(newList);
@@ -16,9 +17,12 @@ const Translator = (props) => {
 
     return ( 
     <Container>
+        {/* search bar to filter the audio data based on english phrase */}
         <div className="searchBar">
             <TranslatorSearchBar filterBy={filterByPhrase}/>
         </div>
+
+        {/* translation table to display the filtered data */}
         <div className="translationResultTable">
             <TranslationResultTable translationList={filteredList}/>
         </div>

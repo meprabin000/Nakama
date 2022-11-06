@@ -13,6 +13,7 @@ const TranslatorSearchBar = ({filterBy}) => {
                 value={searchPhrase}
                 onChange={(e) => setSearchPhrase(e.target.value)}
             />
+            {/* on button click filters the result */}
             <Button variant="outline-success" onClick={(e) => filterBy(searchPhrase)} type="submit">Search</Button>
         </Form>
 );

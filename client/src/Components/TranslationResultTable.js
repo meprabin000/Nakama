@@ -16,6 +16,7 @@ const TranslationResultTable = ({translationList}) => {
             </thead>
             <tbody>
                 {
+                    // maps each of the translation list item in the proper format for display
                     translationList.map( (item) =>
                         <TranslationListItem key={translationIdGenerator} id={translationIdGenerator++} englishPhrase={item.englishPhrase} japanesePhrase={item.japanesePhrase} pronunciation={item.pronunciation} audioLink={item.audioLink} />
                 )
