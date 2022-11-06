@@ -13,7 +13,7 @@ const Home = (props) => {
 
         <div className="featureTabs">
             <HomepageButton link="http://localhost:3000/currencyConverter">Converter</HomepageButton>
-            <HomepageButton>Translator</HomepageButton>
+            <HomepageButton link="http://localhost:3000/translator">Translator</HomepageButton>
             <HomepageButton link="http://localhost:3000/Itinerary">Itinerary</HomepageButton>
             <HomepageButton>Emergency</HomepageButton>
         </div>
