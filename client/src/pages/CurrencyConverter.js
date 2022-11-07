@@ -25,7 +25,7 @@ const CurrencyConverter = (props) => {
     const currencyOptions = ["us", "yen"]
     const [amount, setAmount] = useState(1);
     const [option, setOption] = useState("us");
-    const url = `http://localhost:3001/currency?us=1`;
+    const url = `http://localhost:3001/currency`;
 
 
     const [conversionRate, setConversionRate] = useState();
@@ -43,9 +43,9 @@ const CurrencyConverter = (props) => {
     //when fetch is returning data, add or set cached data and use it as the conversionRate 
     else if (!error && (data != undefined || error != "") && amount > 0){
         const setRate = () => {
-            setConversionRate(data.amount);
+            setConversionRate(data.rate);
         };
-        addCache('conversionRate', 'http://localhost:3001', data.amount);
+        addCache('conversionRate', 'http://localhost:3001', data.rate);
     }
 
     return ( <Container>
@@ -55,7 +55,7 @@ const CurrencyConverter = (props) => {
         {conversionRate && isPending && <div style={{width: "100%", textAlign: 'center'}}><Spinner animation="border" /></div>}
         {conversionRate && amount <= 0 && <p style={{textAlign: 'center', color: 'red'}}>Please enter a valid currency amount</p>}
         {!conversionRate && <p style={{textAlign: 'center', color: 'red'}}>Cannot reach server, please connect to internet once</p>}
-        {conversionRate && amount > 0 && !isPending && <h5 style={{textAlign: 'center', color: 'blue'}}>{amount} {option === "us" ? "USD" : "YEN"} is equivalent to {option === "us" ? (conversionRate * amount).toFixed(2) : (amount / conversionRate).toFixed(2)} {option === "us" ? "YEN" : "USD"}.</h5>}
+        {conversionRate && amount > 0 && !isPending && <h5 style={{textAlign: 'center', color: 'blue'}}>{amount} {option === "us" ? "USD" : "YEN"} is equivalent to {option === "us" ? (amount * conversionRate).toFixed(2) : (amount / conversionRate).toFixed(2)} {option === "us" ? "YEN" : "USD"}.</h5>}
 
         <Form onSubmit={(e) => e.preventDefault()}>
             <Form.Group className="mb-3" controlId="currencySelect">
