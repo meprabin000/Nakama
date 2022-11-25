@@ -11,6 +11,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Link from '@mui/material/Link';
 
  const Emergency = (props) => {
     return ( 
@@ -107,8 +108,23 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
           </Typography>
         </AccordionDetails>
        </Accordion>
+       <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography>In case of Earthquake/Tsunami/National Emergency</Typography>
+          
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+          To download the NHK World App, <Link href="https://www3.nhk.or.jp/nhkworld/en/app/" underline="none"> {'click here'}</Link>. Checkout the US Embassy website by<Link href="https://jp.usembassy.gov/services/emergency-preparedness-americans-japan/" underline="none"> {'clicking here'}</Link> to learn about safety tips.
+          </Typography>
+        </AccordionDetails>
+       </Accordion>
        </div> 
-       <div></div>
+       
     </Container> );
 }
  
