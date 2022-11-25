@@ -17,6 +17,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
+    "react-native-phone-call": "^1.2.0",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
     "replay": "^2.4.0",
