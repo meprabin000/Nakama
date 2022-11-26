@@ -11,7 +11,7 @@ const Translator = (props) => {
 
     // filters out the translations whose english phrase doesn't contain the 'phrase' in the parameter
     const filterByPhrase =(phrase) => {
-        const newList = translationList.filter((item) => item.englishPhrase.toLowerCase().includes(phrase));
+        const newList = translationList.filter((item) => item.englishPhrase.toLowerCase().includes(phrase.toLowerCase()));
         setFilteredList(newList);
     }
 

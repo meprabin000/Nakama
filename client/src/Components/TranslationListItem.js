@@ -13,7 +13,6 @@ const TranslationListItem = (props) => {
             <audio controls>
                 <source src={props.audioLink} type="audio/wav" />
             </audio>
-            {/* <Button variant="primary" onClick={() => audioRef.current.play()}>Play</Button> */}
             </th>
         </tr>);
 }
