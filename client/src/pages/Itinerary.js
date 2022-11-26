@@ -30,7 +30,7 @@ function Itinerary(props) {
 
     const [dayplans, setDayPlans] = useState([]);
 
-    const Itinerary_identifier = '6366a7868d1ed5e92f0d3334';
+    const Itinerary_identifier = '63694b7a8395f71a7bdac10c';
     const uri = 'http://localhost:3001/itinerary/getDayPlans?Itinerary_identifier='+Itinerary_identifier 
 
     const {isPending, data, error} = useFetch(uri);
