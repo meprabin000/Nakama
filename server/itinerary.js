@@ -3,6 +3,7 @@ const url = require('url');
 
 const {MongoClient} = require('mongodb');
 const mongo = require('mongodb');
+const { builtinModules } = require('module');
 const uri = 'mongodb://127.0.0.1:27017';
 const client = new MongoClient(uri);
 const dbName = 'local';
@@ -23,12 +24,43 @@ async function getDayPlans(req, res, next){
     }
 }
 
+async function updateCurrentItinerary(req, res, next){
+
+    let queryParam = url.parse(req.url,true).query; //creates json object for query parameters
+    if (Object.keys(queryParam).length == 1 && queryParam.Itinerary_identifier) { //only allows for one query param
+        const database = client.db(dbName);
+        let cursor = database.collection('itinerary');
+        try {
+            const found = await cursor.updateOne({CurrentItinerary : { $exists : true }}, 
+                {$set: {'CurrentItinerary' : new mongo.ObjectId(queryParam.Itinerary_identifier)}});
+            res.send({"status code": "200"});
+        }
+        catch (err){
+            res.send({err});
+        }
+               
+    }
+    else {  //errors when there's too many query params
+        res.send({"error" : "400"})
+    }
+}
+
+async function getCurrentItinerary(req, res, next){
+    const database = client.db(dbName);
+    let cursor = database.collection('itinerary');
+    const found = await cursor.find({ CurrentItinerary : { $exists : true } }).toArray();
+    if (found[0].CurrentItinerary)
+        res.send({"CurrentItinerary" : found[0].CurrentItinerary});
+    else
+        res.send({"error":"400"});
+}
+
 async function getItineraries(req, res, next){
     const database = client.db(dbName);
     let cursor = database.collection('itinerary');
     const found = await cursor.find({ StartDate : { $exists : true } }).toArray();
     if (found[0])
-        res.send(found[0].DayPlans);
+        res.send(found);
     else
         res.send({"error":"400"});
 }
@@ -306,6 +338,8 @@ async function deleteDayPlan(req, res, next){
     }
 }
 
+module.exports.updateCurrentItinerary = updateCurrentItinerary;
+module.exports.getCurrentItinerary = getCurrentItinerary;
 module.exports.getItineraries = getItineraries;
 module.exports.getDayPlans = getDayPlans;
 module.exports.insertItinerary = insertItinerary;
