@@ -15,7 +15,7 @@ const Home = (props) => {
             <HomepageButton link="http://localhost:3000/currencyConverter">Converter</HomepageButton>
             <HomepageButton link="http://localhost:3000/translator">Translator</HomepageButton>
             <HomepageButton link="http://localhost:3000/Itinerary">Itinerary</HomepageButton>
-            <HomepageButton>Emergency</HomepageButton>
+            <HomepageButton link="http://localhost:3000/Emergency">Emergency</HomepageButton>
         </div>
     </Container> );
 }

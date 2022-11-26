@@ -23,6 +23,16 @@ async function getDayPlans(req, res, next){
     }
 }
 
+async function getItineraries(req, res, next){
+    const database = client.db(dbName);
+    let cursor = database.collection('itinerary');
+    const found = await cursor.find({ StartDate : { $exists : true } }).toArray();
+    if (found[0])
+        res.send(found[0].DayPlans);
+    else
+        res.send({"error":"400"});
+}
+
 async function insertItinerary(req, res, next){
     let queryParam = url.parse(req.url,true).query; //creates json object for query parameters
     if (Object.keys(queryParam).length == 3 && (queryParam.Name && queryParam.StartDate && queryParam.EndDate)) { //only allows for one query param
@@ -296,6 +306,7 @@ async function deleteDayPlan(req, res, next){
     }
 }
 
+module.exports.getItineraries = getItineraries;
 module.exports.getDayPlans = getDayPlans;
 module.exports.insertItinerary = insertItinerary;
 module.exports.updateItinerary = updateItinerary;
