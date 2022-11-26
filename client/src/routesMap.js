@@ -4,6 +4,7 @@ import CurrencyConverter from "./pages/CurrencyConverter";
 import Itinerary from "./pages/Itinerary";
 import Translator from "./pages/Translator";
 import Emergency from "./pages/Emergency";
+import AllItinerary from "./pages/AllItinerary";
 
 const routesMap = () => {
     return ([ 
@@ -26,6 +27,10 @@ const routesMap = () => {
             {
                 "path": "/Emergency",
                 "element": <Emergency />
+            },
+            {
+                "path": "/AllItinerary",
+                "element": <AllItinerary />
             }
         ]
     );
