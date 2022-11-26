@@ -1,4 +1,4 @@
-import DehazeRoundedIcon from '@mui/icons-material/DehazeRounded';
+import MoreHorizRoundedIcon from '@mui/icons-material/MoreHorizRounded';
 import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
@@ -24,7 +24,7 @@ export default function ItineraryMenu() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-      <DehazeRoundedIcon />
+      <MoreHorizRoundedIcon />
       </IconButton>
       <Menu
         id="basic-menu"
