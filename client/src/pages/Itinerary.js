@@ -53,6 +53,7 @@ function Itinerary(props) {
             <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             {day.DayDate}
+            <ItineraryMenu />
             </AccordionSummary>
             <AccordionDetails>
             {day.Description}
@@ -65,7 +66,6 @@ function Itinerary(props) {
            <div class="flexbox-container">
             <div><h1>Itinerary</h1></div>
             <div><EditButton/></div> 
-            <div><ItineraryMenu/></div>
             <div><ul>{schedule}</ul></div>
             </div>           
         </Container>);
