@@ -67,7 +67,6 @@ function Itinerary(props) {
         <Container className="Itinerary">
            <div class="flexbox-container">
             <div><h1>Itinerary</h1></div>
-            <div><EditButton/></div> 
             <div><ul>{schedule}</ul></div>
             </div>           
         </Container>);

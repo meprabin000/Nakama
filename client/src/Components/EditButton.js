@@ -25,7 +25,7 @@ export default function EditButton() {
 
   const handleEnter = () => {
     if(checkPasscode(enteredPasscode)) {
-      navigate("/AllItinerary");
+      navigate("/Itinerary/AllItinerary");
     }
   }
 
