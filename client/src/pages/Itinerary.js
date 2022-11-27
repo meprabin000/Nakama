@@ -31,11 +31,19 @@ async function getCache(name, url){
 function Itinerary(props) {
 
     const [dayplans, setDayPlans] = useState([]);
+    const [currentItinerary, setCurrentItinerary] = useState([]);
 
-    const Itinerary_identifier = '63694b7a8395f71a7bdac10c';
+    const url = "http://localhost:3001/itinerary/getCurrentItinerary"
+    fetch(url).then((response) => response.json())
+    .then((data) => {
+            setCurrentItinerary(data.CurrentItinerary)
+    });
+  
+
+    const Itinerary_identifier = currentItinerary;
     const uri = 'http://localhost:3001/itinerary/getDayPlans?Itinerary_identifier='+Itinerary_identifier 
 
-    const {isPending, data, error} = useFetch(uri);
+    let {isPending, data, error} = useFetch(uri);
     
     useEffect(() => {
         if ((error || (data == undefined && error == ""))) {
