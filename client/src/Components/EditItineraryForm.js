@@ -10,8 +10,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 export default function EditItineraryForm() {
   const [open, setOpen] = React.useState(false);
   const [enterName, setEnterName] = React.useState('');
-  const [startDate, setStartDate] = React.useState('');
-  const [endDate, setEndDate] = React.useState('');
+  const [startDate, setStartDate] = React.useState<Dayjs | null>(dayjs('2022-04-07'));
+  const [endDate, setEndDate] = React.useState<Dayjs | null>(dayjs('2022-04-07'));
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -39,16 +39,20 @@ export default function EditItineraryForm() {
             variant="standard"
             onClick={(e) => setEnterName(e.target.value)}
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="start date"
-            label="Start Date"
-            type="date"
-            fullWidth
-            variant="standard"
-            onClick={(e) => setStartDate(e.target.value)}
-          />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <Stack spacing={2} direction="row">
+              <DateField
+                label="StartDate"
+                value={startDate}
+                onChange={(newValue) => setStartDate(newValue)}
+              />
+              <DateField
+                label="Controlled field"
+                value={endDate}
+                onChange={(newValue) => setEndDate(newValue)}
+              />
+            </Stack>
+          </LocalizationProvider>
           <TextField
             autoFocus
             margin="dense"
