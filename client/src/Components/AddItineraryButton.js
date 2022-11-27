@@ -7,7 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export default function EditButton() {
+export default function AddItineraryButton() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -17,10 +17,6 @@ export default function EditButton() {
   const handleClose = () => {
     setOpen(false);
   };
-
-  const handleValidClose = () => {
-    this.props.history.push('/Itinerary')
-  }
 
   return (
     <div>
@@ -44,7 +40,7 @@ export default function EditButton() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleValidClose}>Enter</Button>
+          <Button onClick={handleClose}>Enter</Button>
         </DialogActions>
       </Dialog>
     </div>

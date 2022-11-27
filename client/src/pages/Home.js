@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import EditButton from "../Components/EditButton";
 import HomepageButton from "../Components/HomepageButton";
 import TopBar from "../Components/TopBar";
 
@@ -16,6 +17,7 @@ const Home = (props) => {
             <HomepageButton link="http://localhost:3000/translator">Translator</HomepageButton>
             <HomepageButton link="http://localhost:3000/Itinerary">Itinerary</HomepageButton>
             <HomepageButton link="http://localhost:3000/Emergency">Emergency</HomepageButton>
+            <EditButton/>
         </div>
     </Container> );
 }
