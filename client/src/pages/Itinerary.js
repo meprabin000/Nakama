@@ -6,6 +6,8 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import EditButton from "../Components/EditButton";
+import ItineraryMenu from "../Components/ItineraryMenu";
 
 //creates cache entry into window browser or updates existing entries
 function addCache(name, url, response){
@@ -62,8 +64,12 @@ function Itinerary(props) {
 
     return (
         <Container className="Itinerary">
-            <h1>Itinerary</h1>
-            <ul>{schedule}</ul>            
+           <div class="flexbox-container">
+            <div><h1>Itinerary</h1></div>
+            <div><EditButton/></div> 
+            <div><ItineraryMenu/></div>
+            <div><ul>{schedule}</ul></div>
+            </div>           
         </Container>);
 }
  
