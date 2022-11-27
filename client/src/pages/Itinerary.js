@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import useFetch from "../customHooks/useFetch";
 import { Container } from "react-bootstrap";
 import Typography from '@mui/material/Typography';
@@ -35,17 +35,19 @@ function Itinerary(props) {
 
     const {isPending, data, error} = useFetch(uri);
     
-    if ((error || (data == undefined && error == ""))) {
-        getCache('dayplans', 'http://localhost:3001').then((item) => {
-            setDayPlans(item);
-        });
-    }
-    else if (!error && (data != undefined || error != "")){
-        const setdplans = () => {
-            setDayPlans(data);
-        };
-        addCache('dayplans', 'http://localhost:3001', data);
-    }
+    useEffect(() => {
+        if ((error || (data == undefined && error == ""))) {
+            getCache('dayplans', 'http://localhost:3001').then((item) => {
+                setDayPlans(item);
+            });
+        }
+        else if (!error && (data != undefined || error != "")){
+            const setdplans = () => {
+                setDayPlans(data);
+            };
+            addCache('dayplans', 'http://localhost:3001', data);
+        }
+    }, [data])
 
         let schedule = dayplans.map((day) => 
             <Accordion>

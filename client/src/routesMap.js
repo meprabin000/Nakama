@@ -29,7 +29,7 @@ const routesMap = () => {
                 "element": <Emergency />
             },
             {
-                "path": "/AllItinerary",
+                "path": "/Itinerary/AllItinerary",
                 "element": <AllItinerary />
             }
         ]
