@@ -9,8 +9,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 export default function EditItineraryForm() {
   const [open, setOpen] = React.useState(false);
-  const [DayDate, setDayDate] = React.useState('');
-  const [Description, setDescription] = React.useState('');
+  const [dayDate, setDayDate] = React.useState("2022-11-17");
+  const [description, setDescription] = React.useState('');
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -26,23 +26,27 @@ export default function EditItineraryForm() {
         Edit Day Plans
       </Button>
       <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>
+          Edit Day Plan
+        </DialogTitle>
         <DialogContent>
           
           <TextField
-            autoFocus
             margin="dense"
             id="DayDate"
-            label="DayDate"
+            label="Date"
             type="date"
             fullWidth
             variant="standard"
+            defaultValue="2022-11-17"
+            value={dayDate}
             onClick={(e) => setDayDate(e.target.value)}
           />
           <TextField
             autoFocus
             margin="dense"
             id="description"
-            label="Description"
+            label="Description of the day activity"
             type="text"
             fullWidth
             variant="standard"

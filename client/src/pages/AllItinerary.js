@@ -5,6 +5,8 @@ import useFetch from "../customHooks/useFetch";
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Button from '@mui/material/Button';
+import EditButton from '../Components/EditButton';
+import EditDayPlans from "../Components/EditDayPlans";
 
 
 
@@ -40,6 +42,7 @@ const AllItinerary = (props) => {
 
     return ( 
         <div className="allItineraryPage">
+            <EditDayPlans />
             {itineraryList}
         </div>
      );
