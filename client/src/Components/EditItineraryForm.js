@@ -1,17 +1,21 @@
-import * as React from 'react';
+import React from 'react';
+import dayjs, { Dayjs } from 'dayjs';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import Stack from '@mui/material/Stack';
+import { Unstable_DateField as DateField } from '@mui/x-date-pickers/DateField';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { FormLabel, Modal } from 'react-bootstrap';
+
 
 export default function EditItineraryForm() {
   const [open, setOpen] = React.useState(false);
   const [enterName, setEnterName] = React.useState('');
-  const [startDate, setStartDate] = React.useState<Dayjs | null>(dayjs('2022-04-07'));
-  const [endDate, setEndDate] = React.useState<Dayjs | null>(dayjs('2022-04-07'));
+  const [startDate, setStartDate] = React.useState();
+  const [endDate, setEndDate] = React.useState();
+
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -26,49 +30,49 @@ export default function EditItineraryForm() {
       <Button variant="outlined" onClick={handleClickOpen}>
         Edit Itinerary
       </Button>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogContent>
-          
+      <Modal show={open} onHide={handleClose}>
+        <Modal.Header>
+          Edit Itinerary
+        </Modal.Header>
+        <Modal.Body>
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="Name"
+            label="Trip Name"
             type="name"
             fullWidth
             variant="standard"
+            defaultValue="Summer 2023"
             onClick={(e) => setEnterName(e.target.value)}
           />
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <Stack spacing={2} direction="row">
-              <DateField
-                label="StartDate"
-                value={startDate}
-                onChange={(newValue) => setStartDate(newValue)}
-              />
-              <DateField
-                label="Controlled field"
-                value={endDate}
-                onChange={(newValue) => setEndDate(newValue)}
-              />
-            </Stack>
-          </LocalizationProvider>
           <TextField
-            autoFocus
             margin="dense"
-            id="end date"
-            label="End Date"
+            id="startDate"
+            label="Start Date"
             type="date"
             fullWidth
             variant="standard"
+            defaultValue="2022-11-17"
+            onClick={(e) => setStartDate(e.target.value)}
+          />
+
+          <TextField
+            margin="dense"
+            id="endDate"
+            type="date"
+            label="End Date"
+            fullWidth
+            variant="standard"
+            defaultValue="2022-11-17"
             onClick={(e) => setEndDate(e.target.value)}
           />
-        </DialogContent>
-        <DialogActions>
+        </Modal.Body>
+        <Modal.Footer>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleClose}>Enter</Button>
-        </DialogActions>
-      </Dialog>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
