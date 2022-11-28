@@ -10,13 +10,17 @@ import {checkPasscode} from '../Services/encryptionService';
 import {Navigate, useNavigate} from 'react-router-dom';
 
 
+
 export default function EditButton() {
   const [open, setOpen] = React.useState(false);
   const [enteredPasscode, setEnteredPasscode] = React.useState("")
   const navigate = useNavigate()
 
   const handleClickOpen = () => {
-    setOpen(true);
+    if (window.navigator.onLine)
+        setOpen(true);
+    else  
+      console.log("need connection to edit")
   };
 
   const handleClose = () => {
