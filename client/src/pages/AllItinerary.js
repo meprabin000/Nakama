@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useFetch from "../customHooks/useFetch";
 import ItineraryMenu from "../Components/ItineraryMenu";
+import InsertItineraryForm from '../Components/InsertItineraryForm'
 
 
 const AllItinerary = (props) => {
@@ -35,6 +36,7 @@ const AllItinerary = (props) => {
     return ( 
         <div class="flexbox-container">
         <div>{itineraryList}</div>
+        <InsertItineraryForm></InsertItineraryForm>
         </div>
      );
 }

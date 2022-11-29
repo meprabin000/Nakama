@@ -5,7 +5,6 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import {Navigate, useNavigate} from 'react-router-dom';
-import EditItineraryForm from './EditItineraryForm';
 import { FormLabel, Modal } from 'react-bootstrap';
 import TextField from '@mui/material/TextField';
 
@@ -34,8 +33,15 @@ export default function ItineraryMenu(props) {
   };
 
   const handleEnter = () => {
+    const options = {
+      method: 'POST'
+        };
+  fetch( uri+'updateItinerary?Itinerary_identifier='+props.Itinerary_identifier+'&Name='+enterName+'&StartDate='+startDate+'&EndDate='+endDate, options )
+      .then( response => response.json() )
+      .then( response => {
+          console.log(response)
+      } );
     setOpen(false);
-
   }
   //----------------------------------------------- EDIT
 
@@ -44,6 +50,14 @@ export default function ItineraryMenu(props) {
   };
 
   const handleDelete = () => {
+    const options = {
+      method: 'POST'
+        };
+    fetch( uri+'deleteItinerary?Itinerary_identifier='+props.Itinerary_identifier, options )
+        .then( response => response.json() )
+        .then( response => {
+            console.log(response)
+        } );
     setAnchorEl(null);
   };
 
@@ -107,8 +121,8 @@ export default function ItineraryMenu(props) {
             type="name"
             fullWidth
             variant="standard"
-            defaultValue={enterName}
-            onClick={(e) => setEnterName(e.target.value)}
+            value={enterName}
+            onChange={(e) => setEnterName(e.target.value)}
           />
           <TextField
             margin="dense"
@@ -117,8 +131,8 @@ export default function ItineraryMenu(props) {
             type="date"
             fullWidth
             variant="standard"
-            defaultValue={startDate}
-            onClick={(e) => setStartDate(e.target.value)}
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
           />
 
           <TextField
@@ -128,8 +142,8 @@ export default function ItineraryMenu(props) {
             type="date"
             fullWidth
             variant="standard"
-            defaultValue={endDate}
-            onClick={(e) => setEndDate(e.target.value)}
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
           />
         </Modal.Body>
         <Modal.Footer>

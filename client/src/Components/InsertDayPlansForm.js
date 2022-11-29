@@ -9,13 +9,12 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { FormLabel, Modal } from 'react-bootstrap';
 
 
-export default function EditItineraryForm() {
+export default function EditItineraryForm(props) {
   const [open, setOpen] = React.useState(false);
-  const [enterName, setEnterName] = React.useState('');
-  const [startDate, setStartDate] = React.useState();
-  const [endDate, setEndDate] = React.useState();
+  const [description, setDescription] = React.useState();
+  const [dayDate, setDayDate] = React.useState("2023-01-01");
 
-
+  const uri = 'http://localhost:3001/itinerary/';
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -25,52 +24,52 @@ export default function EditItineraryForm() {
     setOpen(false);
   };
 
+  const handleEnter = () => {
+    setOpen(false)
+    const options = {
+      method: 'POST'
+        };
+    fetch( uri+'insertDayPlan?Itinerary_identifier='+props._id+'&DayDate='+dayDate+'&Description='+description, options )
+          .then( response => response.json() )
+          .then( response => {
+              console.log(response)
+          } );
+  }
+
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Edit Itinerary
+        Insert Itinerary
       </Button>
       <Modal show={open} onHide={handleClose}>
         <Modal.Header>
-          Edit Itinerary
+          Insert Itinerary
         </Modal.Header>
         <Modal.Body>
+        <TextField
+            margin="dense"
+            id="dayDate"
+            label="Day Date"
+            type="date"
+            fullWidth
+            variant="standard"
+            defaultValue="2023-01-01"
+            onChange={(e) => setDayDate(e.target.value)}
+          />
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="Trip Name"
+            label="Description"
             type="name"
             fullWidth
             variant="standard"
-            defaultValue="Summer 2023"
-            onClick={(e) => setEnterName(e.target.value)}
-          />
-          <TextField
-            margin="dense"
-            id="startDate"
-            label="Start Date"
-            type="date"
-            fullWidth
-            variant="standard"
-            defaultValue="2022-11-17"
-            onClick={(e) => setStartDate(e.target.value)}
-          />
-
-          <TextField
-            margin="dense"
-            id="endDate"
-            type="date"
-            label="End Date"
-            fullWidth
-            variant="standard"
-            defaultValue="2022-11-17"
-            onClick={(e) => setEndDate(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Enter</Button>
+          <Button onClick={handleEnter}>Enter</Button>
         </Modal.Footer>
       </Modal>
     </div>
