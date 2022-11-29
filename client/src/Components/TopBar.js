@@ -13,7 +13,8 @@ export default function TopBar() {
         flexGrow: 1,
         padding: '5px',
         backgroundColor: '#470000',
-        textAlign: 'center'
+        textAlign: 'center',
+        height: '13vh'
       }
       }>
         
