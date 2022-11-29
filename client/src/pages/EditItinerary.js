@@ -8,7 +8,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DayPlanMenu from "../Components/DayPlanMenu";
 import InsertDayPlansForm from '../Components/InsertDayPlansForm'
-
+import ListRoundedIcon from '@mui/icons-material/ListRounded';
 
 
 function EditItinerary(props) {
@@ -47,9 +47,9 @@ function EditItinerary(props) {
 
     return (
         <Container>
-           <div class="flexbox-container">
-           <div><h1>Edit Itinerary</h1></div>
-            <div><ul>{schedule}</ul></div>
+           <div class="flexbox-container" style={{fontFamily: 'baskerville', margin: '5px'}}>
+           <div><h1 style={{textAlign: 'center'}}>Edit Itinerary</h1></div>
+            <div>{schedule}</div>
             </div>  
             <InsertDayPlansForm _id={Itinerary_identifier} refresh={refresh} setRefresh={setRefresh}></InsertDayPlansForm>         
         </Container>

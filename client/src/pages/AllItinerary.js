@@ -26,17 +26,18 @@ const AllItinerary = (props) => {
 
     let itineraryList = allItineraries.map((itinerary) => {
         let hrefURI = '/Itinerary/EditItinerary?Itinerary_identifier='+itinerary._id;
-        return  <div style={{border: '1px solid black', marginTop: '10px', marginRight: '30px', marginLeft: '30px', padding: '10px'}}>
-                    <h3>{itinerary.Name}</h3>
+        return  <div style={{borderBottom: '1px solid black', marginTop: '10px', marginRight: '30px', marginLeft: '30px', padding: '10px', position: 'relative', fontFamily: 'baskerville'}}>
+                    <h3 style={{}}>{itinerary.Name}</h3>
                     <ItineraryMenu Itinerary_identifier={itinerary._id} Name={itinerary.Name} StartDate={itinerary.StartDate} EndDate={itinerary.EndDate}></ItineraryMenu>
-                    <h4>{(currentItinerary == itinerary._id) ? "published" : "unpublished"}</h4>
+                    <h4 style={{fontSize: '20px'}}>{(currentItinerary == itinerary._id) ? "published" : "unpublished"}</h4>
                 </div>     
     })
 
     return ( 
-        <div class="flexbox-container">
-        <div>{itineraryList}</div>
-        <InsertItineraryForm></InsertItineraryForm>
+        <div class="flexbox-container" style={{fontFamily: 'center'}}>
+            <h3 style={{textAlign: 'center', fontSize: '30px', margin: '5px'}}>All Itineraries</h3>
+            <div>{itineraryList}</div>
+            <InsertItineraryForm></InsertItineraryForm>
         </div>
      );
 }

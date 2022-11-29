@@ -69,7 +69,7 @@ export default function DayPlanMenu(props) {
   };
 
   return (
-    <div>
+    <div style={{position: 'relative', bottom: '1px', left: '56%'}}>
       <IconButton
         id="Icon-button"
         aria-controls={open ? 'basic-menu' : undefined}

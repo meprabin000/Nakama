@@ -39,8 +39,8 @@ export default function EditItineraryForm() {
   }
 
   return (
-    <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+    <div style={{textAlign: 'center', marginTop: '10px'}}>
+      <Button style={{color: '#470000', borderColor: '#470000'}} variant="outlined" onClick={handleClickOpen}>
         Insert Itinerary
       </Button>
       <Modal show={open} onHide={handleClose}>

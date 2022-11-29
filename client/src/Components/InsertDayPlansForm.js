@@ -40,8 +40,8 @@ export default function InsertDayPlansForm(props) {
   }
 
   return (
-    <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+    <div style={{textAlign: 'center', marginTop: '30px'}}>
+      <Button variant="outlined" onClick={handleClickOpen} style={{color: '#470000', borderColor: '#470000', fontFamily: 'baskerville'}}>
         Insert Dayplans 
       </Button>
       <Modal show={open} onHide={handleClose}>

@@ -84,7 +84,7 @@ export default function ItineraryMenu(props) {
   };
 
   return (
-    <div>
+    <div style={{position: 'absolute', right: '5px', top: '0px'}}>
       <IconButton
         id="Icon-button"
         aria-controls={open ? 'basic-menu' : undefined}
