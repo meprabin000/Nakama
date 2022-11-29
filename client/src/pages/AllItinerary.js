@@ -1,11 +1,6 @@
-import { AccordionSummary } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Accordion } from "react-bootstrap";
 import useFetch from "../customHooks/useFetch";
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import Button from '@mui/material/Button';
-
+import ItineraryMenu from "../Components/ItineraryMenu";
 
 
 const AllItinerary = (props) => {
@@ -30,17 +25,16 @@ const AllItinerary = (props) => {
 
     let itineraryList = allItineraries.map((itinerary) => {
         let hrefURI = '/Itinerary/EditItinerary?Itinerary_identifier='+itinerary._id;
-        return <ListItemButton component="a" href={hrefURI}>
-                    <ListItemText primary={itinerary.Name} />
-                    <Button >{(currentItinerary == itinerary._id) ? "published" : "unpublished"}</Button> 
-                </ListItemButton> 
-
-      
+        return  <div style={{border: '1px solid black', marginTop: '10px', marginRight: '30px', marginLeft: '30px', padding: '10px'}}>
+                    <h3>{itinerary.Name}</h3>
+                    <ItineraryMenu Itinerary_identifier={itinerary._id} Name={itinerary.Name} StartDate={itinerary.StartDate} EndDate={itinerary.EndDate}></ItineraryMenu>
+                    <h4>{(currentItinerary == itinerary._id) ? "published" : "unpublished"}</h4>
+                </div>     
     })
 
     return ( 
-        <div className="allItineraryPage">
-            {itineraryList}
+        <div class="flexbox-container">
+        <div>{itineraryList}</div>
         </div>
      );
 }

@@ -6,7 +6,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ItineraryMenu from "../Components/ItineraryMenu";
+import DayPlanMenu from "../Components/DayPlanMenu";
 
 
 
@@ -33,7 +33,7 @@ function EditItinerary(props) {
             <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             {day.DayDate}
-            <ItineraryMenu />
+            <DayPlanMenu />
             </AccordionSummary>
             <AccordionDetails>
             {day.Description}
