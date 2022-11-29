@@ -5,7 +5,7 @@ import TranslationListItem from "./TranslationListItem";
 const TranslationResultTable = ({translationList}) => {
     let translationIdGenerator = 1;
 
-    return ( <Table responsive striped>
+    return ( <Table responsive striped style={{fontFamily: 'baskerville'}}>
             <thead>
                 <tr>
                     <th>#</th>
