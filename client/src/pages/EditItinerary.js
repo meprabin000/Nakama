@@ -15,11 +15,12 @@ function EditItinerary(props) {
 
     const [searchParams] = useSearchParams();
     const [dayplans, setDayPlans] = useState([]);
+    const [refresh, setRefresh] = useState(false)
 
         let Itinerary_identifier = searchParams.get('Itinerary_identifier');
         const uri = 'http://localhost:3001/itinerary/getDayPlans?Itinerary_identifier='+Itinerary_identifier 
+        let {data, error} = useFetch(uri);
 
-        let {isPending, data, error} = useFetch(uri);
         
         useEffect(() => {
             if ((error || (data == undefined && error == ""))) {
@@ -30,17 +31,19 @@ function EditItinerary(props) {
             }
         }, [data])
 
-        let schedule = dayplans.map((day) => 
-            <Accordion>
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            {day.DayDate}
-            <DayPlanMenu _id={Itinerary_identifier} DayPlan_identifier={day._id} DayDate={day.DayDate} Description={day.Description}/>
-            </AccordionSummary>
-            <AccordionDetails>
-            {day.Description}
-            </AccordionDetails>
-            </Accordion>
-        );
+        let schedule = ""
+        if(refresh || !refresh) {
+            schedule = dayplans.map((day) => 
+                <Accordion>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                {day.DayDate}
+                <DayPlanMenu _id={Itinerary_identifier} DayPlan_identifier={day._id} DayDate={day.DayDate} Description={day.Description}/>
+                </AccordionSummary>
+                <AccordionDetails>
+                {day.Description}
+                </AccordionDetails>
+                </Accordion>
+            )};
 
     return (
         <Container>
@@ -48,7 +51,7 @@ function EditItinerary(props) {
            <div><h1>Edit Itinerary</h1></div>
             <div><ul>{schedule}</ul></div>
             </div>  
-            <InsertDayPlansForm _id={Itinerary_identifier}></InsertDayPlansForm>         
+            <InsertDayPlansForm _id={Itinerary_identifier} refresh={refresh} setRefresh={setRefresh}></InsertDayPlansForm>         
         </Container>
     )
 }

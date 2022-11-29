@@ -34,7 +34,8 @@ export default function EditItineraryForm() {
           .then( response => response.json() )
           .then( response => {
               console.log(response)
-          } );
+          } )
+          // .then(window.location.reload());
   }
 
   return (

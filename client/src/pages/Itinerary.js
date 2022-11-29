@@ -63,7 +63,6 @@ function Itinerary(props) {
             <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             {day.DayDate}
-            <ItineraryMenu />
             </AccordionSummary>
             <AccordionDetails>
             {day.Description}
