@@ -20,6 +20,8 @@ app.listen(PORT, () => {
 });
 
 app.use('/currency', currency.convert);
+app.use('/itinerary/updateCurrentItinerary', itinerary.updateCurrentItinerary);
+app.use('/itinerary/getCurrentItinerary', itinerary.getCurrentItinerary);
 app.use('/itinerary/getItineraries', itinerary.getItineraries);
 app.use('/itinerary/getDayPlans', itinerary.getDayPlans);
 app.use('/itinerary/insertItinerary', itinerary.insertItinerary);

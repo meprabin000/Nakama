@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import useFetch from "../customHooks/useFetch";
 import { Container } from "react-bootstrap";
 import Typography from '@mui/material/Typography';
@@ -7,6 +7,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EditButton from "../Components/EditButton";
+import ItineraryMenu from "../Components/ItineraryMenu";
 
 //creates cache entry into window browser or updates existing entries
 function addCache(name, url, response){
@@ -30,23 +31,33 @@ async function getCache(name, url){
 function Itinerary(props) {
 
     const [dayplans, setDayPlans] = useState([]);
+    const [currentItinerary, setCurrentItinerary] = useState([]);
 
-    const Itinerary_identifier = '63694b7a8395f71a7bdac10c';
+    const url = "http://localhost:3001/itinerary/getCurrentItinerary"
+    fetch(url).then((response) => response.json())
+    .then((data) => {
+            setCurrentItinerary(data.CurrentItinerary)
+    });
+  
+
+    const Itinerary_identifier = currentItinerary;
     const uri = 'http://localhost:3001/itinerary/getDayPlans?Itinerary_identifier='+Itinerary_identifier 
 
-    const {isPending, data, error} = useFetch(uri);
+    let {isPending, data, error} = useFetch(uri);
     
-    if ((error || (data == undefined && error == ""))) {
-        getCache('dayplans', 'http://localhost:3001').then((item) => {
-            setDayPlans(item);
-        });
-    }
-    else if (!error && (data != undefined || error != "")){
-        const setdplans = () => {
-            setDayPlans(data);
-        };
-        addCache('dayplans', 'http://localhost:3001', data);
-    }
+    useEffect(() => {
+        if ((error || (data == undefined && error == ""))) {
+            getCache('dayplans', 'http://localhost:3001').then((item) => {
+                setDayPlans(item);
+            });
+        }
+        else if (!error && (data != undefined || error != "")){
+            const setdplans = () => {
+                setDayPlans(data);
+            };
+            addCache('dayplans', 'http://localhost:3001', data);
+        }
+    }, [data])
 
         let schedule = dayplans.map((day) => 
             <Accordion>
@@ -61,10 +72,9 @@ function Itinerary(props) {
 
     return (
         <Container className="Itinerary">
-           <div class="flexbox-container">
-            <div><h1>Itinerary</h1></div>
-            <div><EditButton/></div> 
-            <div><ul>{schedule}</ul></div>
+           <div class="flexbox-container" style={{textAlign: "center", fontFamily: 'baskerville'}}>
+            <div style={{textAlign: 'center', fontFamily: 'baskerville', marginTop: '10px'}}><h1>Itinerary</h1></div>
+            <div style={{textAlign: 'left'}}>{schedule}</div>
             </div>           
         </Container>);
 }

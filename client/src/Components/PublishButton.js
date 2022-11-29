@@ -11,16 +11,12 @@ import {Navigate, useNavigate} from 'react-router-dom';
 
 
 
+
 export default function EditButton() {
   const [open, setOpen] = React.useState(false);
-  const [enteredPasscode, setEnteredPasscode] = React.useState("")
-  const navigate = useNavigate()
 
   const handleClickOpen = () => {
-    if (window.navigator.onLine)
-        setOpen(true);
-    else  
-      console.log("need connection to edit")
+    setOpen(true);
   };
 
   const handleClose = () => {
@@ -28,20 +24,18 @@ export default function EditButton() {
   };
 
   const handleEnter = () => {
-    if(checkPasscode(enteredPasscode)) {
-      navigate("/Itinerary/AllItinerary");
-    }
+    //fetch post stuff
   }
 
   return (
     <div>
-      <Button variant="text" onClick={handleClickOpen} style={{textDecoration: 'underline', color: 'white', fontFamily: 'baskerville'}}>
+      <Button variant="outlined" onClick={handleClickOpen}>
         Edit
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogContent>
           <DialogContentText>
-            Enter access passcode to edit itinerary
+            Choose which itinerary to publish
           </DialogContentText>
           <TextField
             autoFocus
@@ -51,7 +45,6 @@ export default function EditButton() {
             type="password"
             fullWidth
             variant="standard"
-            onChange={(e) => setEnteredPasscode(e.target.value)}
           />
         </DialogContent>
         <DialogActions>
