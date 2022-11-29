@@ -74,7 +74,7 @@ function Itinerary(props) {
     return (
         <Container className="Itinerary">
            <div class="flexbox-container">
-            <div><h1>Itinerary</h1></div>
+            <div style={{textAlign: 'center', fontFamily: 'baskerville', marginTop: '10px'}}><h1>Itinerary</h1></div>
             <div><ul>{schedule}</ul></div>
             </div>           
         </Container>);

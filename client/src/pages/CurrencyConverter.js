@@ -48,15 +48,13 @@ const CurrencyConverter = (props) => {
         addCache('conversionRate', 'http://localhost:3001', data.rate);
     }
 
-    return ( <Container>
-        <h1 style={{textAlign: 'center'}}>Currency Converter</h1>
+    return ( <Container style={{fontFamily: 'baskerville'}}>
+        <h1 style={{textAlign: 'center', marginTop: '10px'}}>Currency Converter</h1>
         
         {/*these four headings display the state of the program:  pending, invalid input, no internet and no cache data, and working */}
         {conversionRate && isPending && <div style={{width: "100%", textAlign: 'center'}}><Spinner animation="border" /></div>}
         {conversionRate && amount <= 0 && <p style={{textAlign: 'center', color: 'red'}}>Please enter a valid currency amount</p>}
         {!conversionRate && <p style={{textAlign: 'center', color: 'red'}}>Cannot reach server, please connect to internet once</p>}
-        {conversionRate && amount > 0 && !isPending && <h5 style={{textAlign: 'center', color: 'blue'}}>{amount} {option === "us" ? "USD" : "YEN"} is equivalent to {option === "us" ? (amount * conversionRate).toFixed(2) : (amount / conversionRate).toFixed(2)} {option === "us" ? "YEN" : "USD"}.</h5>}
-
         <Form onSubmit={(e) => e.preventDefault()}>
             <Form.Group className="mb-3" controlId="currencySelect">
                 <Form.Select defaultValue="us" size="md" onChange={(e) => setOption(e.target.value)}>
@@ -66,13 +64,25 @@ const CurrencyConverter = (props) => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="amount">
-                <FloatingLabel label="Amount">
+                <FloatingLabel label={option === "us" ? '\u0024' : '\u00A5'}>
                     <Form.Control
                         as="textarea"
                         placeholder="Enter Amount"
                         style={{height: '100px'}} 
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
+                    />
+                </FloatingLabel>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="dAmount">
+                <FloatingLabel label={option === "us" ? '\u00A5' : '\u0024'}>
+                    <Form.Control
+                        as="textarea"
+                        placeholder="Enter Amount"
+                        style={{height: '100px'}} 
+                        value={option === "us" ? (amount * conversionRate).toFixed(2) : (amount / conversionRate).toFixed(2)}
+                        readOnly
                     />
                 </FloatingLabel>
             </Form.Group>

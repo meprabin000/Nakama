@@ -35,7 +35,7 @@ export default function EditButton() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="text" onClick={handleClickOpen} style={{textDecoration: 'underline', color: 'white', fontFamily: 'baskerville'}}>
         Edit
       </Button>
       <Dialog open={open} onClose={handleClose}>
