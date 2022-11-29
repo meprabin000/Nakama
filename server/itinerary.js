@@ -4,9 +4,10 @@ const url = require('url');
 const {MongoClient} = require('mongodb');
 const mongo = require('mongodb');
 const { builtinModules } = require('module');
-const uri = 'mongodb://127.0.0.1:27017';
+const password = 'gomavs'
+const uri = 'mongodb+srv://MAV:'+password+'@cluster0.sjuqqki.mongodb.net/?retryWrites=true&w=majority';
 const client = new MongoClient(uri);
-const dbName = 'local';
+const dbName = 'study_abroad';
 
 async function getDayPlans(req, res, next){
     let queryParam = url.parse(req.url,true).query; //creates json object for query parameters
