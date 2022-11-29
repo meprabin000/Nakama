@@ -66,8 +66,8 @@
 
 /* Home.js */
 .homepage {
-  background-color: #e8e8e8;
-  height: 100vh;
+  background-color: #000000;
+  height: 87vh;
 }
 
 .featureTabs {
@@ -81,12 +81,14 @@
 
 .homeImage {
   width: 100%;
+  height: 84vh;
   text-align: center;
   box-sizing: border-box;
   margin-bottom: 25px;
   position: relative;
 }
 
-.homeImage img {
+.homeImage > img {
   width: 100%;
+  height: 87vh;
 }
